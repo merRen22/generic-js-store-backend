@@ -1,0 +1,38 @@
+type Product {
+  id: ID!
+  name: String!
+  price: Float!
+}
+
+type Order{
+  id: ID!
+  totalPrice: Float!
+  taxes: Float!
+  shippingCost: Float!
+  code: String!
+}
+
+type Query {
+  "Gets all products"
+  getProducts: [Product]
+  "Gets product by name"
+  getProductsByName(name: String!): [Product]
+}
+
+
+input ProductOrderInput{
+  idProduct: ID!
+  price: Float!
+}
+
+input OrderInput{
+  totalPrice: Float!
+  taxes: Float!
+  shippingCost: Float!
+  products: [ProductOrderInput]!
+}
+
+type Mutation {
+    "Insert a new order"
+    createOrder(input: OrderInput!): Order
+}
