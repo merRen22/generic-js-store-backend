@@ -1,8 +1,8 @@
-"use strict";
+'use strict'
 
 module.exports = (sequelize, DataTypes) => {
   const ProductOrder = sequelize.define(
-    "productorders",
+    'productorders',
     {
       id: {
         type: DataTypes.INTEGER,
@@ -11,11 +11,11 @@ module.exports = (sequelize, DataTypes) => {
       },
       orderId: {
         type: DataTypes.INTEGER,
-        foreignKey: "orderId"
+        foreignKey: 'orderId'
       },
       productId: {
         type: DataTypes.INTEGER,
-        foreignKey: "productId"
+        foreignKey: 'productId'
       },
       price: {
         type: DataTypes.FLOAT,
@@ -26,12 +26,12 @@ module.exports = (sequelize, DataTypes) => {
       freezeTableName: false,
       timestamps: false
     }
-  );
+  )
 
   ProductOrder.associate = models => {
-    ProductOrder.belongsTo(models.products, { foreignKey: "productId" });
-    ProductOrder.belongsTo(models.orders, { foreignKey: "orderId" });
-  };
+    ProductOrder.belongsTo(models.products, { foreignKey: 'productId' })
+    ProductOrder.belongsTo(models.orders, { foreignKey: 'orderId' })
+  }
 
-  return ProductOrder;
-};
+  return ProductOrder
+}

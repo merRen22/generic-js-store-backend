@@ -1,8 +1,8 @@
-"use strict";
+'use strict'
 
 module.exports = (sequelize, DataTypes) => {
   const Order = sequelize.define(
-    "orders",
+    'orders',
     {
       id: {
         type: DataTypes.INTEGER,
@@ -29,14 +29,14 @@ module.exports = (sequelize, DataTypes) => {
     {
       timestamps: false
     }
-  );
+  )
 
-  Order.associate = function(models) {
+  Order.associate = function (models) {
     Order.belongsToMany(models.products, {
-      through: "productorders",
-      foreignKey: "orderId"
-    });
-  };
+      through: 'productorders',
+      foreignKey: 'orderId'
+    })
+  }
 
-  return Order;
-};
+  return Order
+}
