@@ -1,19 +1,20 @@
 "use strict";
 
 module.exports = {
-  createOrder: async (root, args, { db }, info) => {
+  createOrder: async (root, { input }, { db }, info) => {
     let response;
     response = await db.orders.create({
-      totalPrice: OrderInput.totalPrice,
-      taxes: OrderInput.taxes,
-      shippingCost: OrderInput.shippingCost
+      totalPrice: input.totalPrice,
+      taxes: input.taxes,
+      shippingCost: input.shippingCost,
+      deliveryDate: input.deliveryDate
     });
 
-    for (const element in args.products) {
+    for (const element in input.products) {
       await db.productorders.create({
-        price: args.products[element].price,
-        idProduct: args.products[element].idProduct,
-        idOrder: parseInt(response.id)
+        price: input.products[element].price,
+        productId: input.products[element].idProduct,
+        orderId: parseInt(response.id)
       });
     }
 

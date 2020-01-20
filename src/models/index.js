@@ -5,10 +5,21 @@ const path = require("path");
 const basename = path.basename(__filename);
 const Sequelize = require("sequelize");
 const env = process.env.NODE_ENV || "development";
+
+const { DB_USER, DB_PASSWD, DB_HOST, DB_PORT, DB_NAME } = process.env;
+
 const db = {};
 
+/*
 const sequelize = new Sequelize("generic_store_2", "root", "1234", {
   host: "localhost",
+  dialect: "mysql",
+  operatorsAliases: false
+});
+*/
+
+const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWD, {
+  host: DB_HOST,
   dialect: "mysql",
   operatorsAliases: false
 });
