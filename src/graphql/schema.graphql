@@ -10,6 +10,7 @@ type Order{
   taxes: Float!
   shippingCost: Float!
   code: String!
+  deliveryDate: String!
 }
 
 type Query {
@@ -30,6 +31,7 @@ input OrderInput{
   taxes: Float!
   shippingCost: Float!
   products: [ProductOrderInput]!
+  deliveryDate: String!
 }
 
 type Mutation {
